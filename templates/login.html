@@ -1,0 +1,21 @@
+## -*- coding: utf-8 -*-
+<!DOCTYPE html>
+<html>
+    <head>
+    	<script type="text/javascript">
+    		var search = window.location.hash;
+    		var reg = new RegExp("(#|&)access_token=([^&]*)(&|$)");
+            var r = search.match(reg);
+            if (r != null){
+                var access_token = unescape(r[2]);
+                var exdate=new Date();
+    			exdate.setDate(exdate.getDate()+90);
+                document.cookie = "qq_access_token=" + access_token + ";expires="+exdate.toGMTString() + ";path=/"
+				console.log(document.cookie);
+            }
+    	</script>
+    </head>
+    <body onload="javascript:location.href='/'">
+    	
+    </body>
+</html>

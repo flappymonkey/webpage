@@ -1,0 +1,100 @@
+## -*- coding: utf-8 -*-
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>真划算</title>
+	<meta property="qc:admins" content="2577161364036511511745306375" /> 
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css?20130930">
+	<link rel="stylesheet" type="text/css" href="/static/css/tips.css?20130930">
+	<link rel="stylesheet" type="text/css" href="/static/js/myPagination/page.css" />
+	##<script type="text/javascript" charset="utf-8" src="http://fusion.qq.com/fusion_loader?appid=1101071163&platform=qzone"></script>
+	##<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="100519511" data-redirecturi="http://qq.ztmhs.com/static/qc_callback.html" charset="utf-8"></script>
+	<script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21635981"></script>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.plugin.js"></script>
+	<script type="text/javascript" src="/static/js/ZeroClipboard.js"></script>
+	<script type="text/javascript" src="/static/js/myPagination/jquery.myPagination6.0.js"></script>
+	<script type="text/javascript" src="/static/js/base.js?20130930"></script>
+	<script type="text/javascript" src="/static/js/index.js?20130930"></script>
+	<script type="text/javascript" src="/static/js/seckill.js?20130930"></script>
+	<script type="text/javascript" src="/static/js/goldmall.js?20130930"></script>
+	<!--[if lte IE 6]>
+		<script src="/static/js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+	    <script type="text/javascript">
+	        DD_belatedPNG.fix('div, ul, img, li, input , a');
+	    </script>
+	<![endif]--> 
+	<!-- Baidu Button BEGIN -->
+	<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6819384" ></script>
+	<script type="text/javascript" id="bdshell_js"></script>
+	<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+	</script>
+	<!-- Baidu Button END -->
+</head>
+<body>
+	<div class="header wrapper">
+		<div class="top-bar">
+			<div class="follow">
+				<span class="title">关注我们:</span>
+				<div class="weixin">
+					<div class="icon">
+					</div>
+					<div class="detail">
+					</div>
+				</div>
+				<div class="qqqun">
+					<div class="icon"></div>
+					<div class="detail">
+						<a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=d455aa310cb20ef6f839cc8ee38b7299414b409104684aae819d9f2a64a8faba"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="真™划算官方群" title="真™划算官方群"></a>
+					</div>
+				</div>
+				<div class="qq">
+					<a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=28b07e48a7dc597b73510a305f7064fdd50fe2026aeb8245"><img border="0"  src="/static/images/counseling_style_52.png" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+				</div>
+				<div class="qqzone">
+					<!-- <div class="icon"></div> -->
+					<iframe src="http://open.qzone.qq.com/like?url=http%3A%2F%2Fuser.qzone.qq.com%2F2937396129&type=button_num&width=400&height=30&style=2" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:400px;height:30px;border:none;overflow:hidden;margin-top:4px;margin-left:4px;"></iframe>
+				</div>
+			</div>
+			<div class="login">
+				% if userinfo != None:
+					##<img src="${userinfo["info"]["figureurl"]}" />
+					<span class="username">您好，${userinfo["info"]["nickname"]}</span>
+					<a id="logout" href="/auth/logout">退出</a>
+				% else:
+					<a id="qq_login" href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100523811&redirect_uri=http://ztmhs.maimiaotech.com/auth/login&scope=all"><img class="qq-logo" src="/static/images/qq.png" />登陆QQ</a>
+				% endif
+				
+			</div>
+		</div>
+	</div>
+	<div class="search-ctn wrapper">
+		<div class="logo"></div>
+	</div>
+	<div class="wrapper"><%block name="navigation"/><div class="clear"></div></div>
+
+	<div class="wrapper"><%block name="content"/></div>
+
+	<div id="scrollToTop"></div>
+
+
+	<div class="footer wrapper">
+		<div class="small">“真划算”是最专业的第三方推销平台，客观，实时，优惠的为您提供全网高性价比商品。告别虚假的价格，虚假的卖家，</div>
+		<div class="big">每天来“真划算”逛逛就够了。</div>
+		<div class="contact">
+			<span>联系方式：support@maimiaotech.com</span>
+			<span>微信：zhentmhs</span>
+		</div>
+		<div class="copyright">
+			<span>©</span> copyright 2013 maimiaotech.com All rights reserved. 
+			 浙ICP备12016677号
+		</div>
+	</div>
+	##百度统计代码
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcdf011a9ef990ca0279ffdab9ccb5605' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</body>
+</html>

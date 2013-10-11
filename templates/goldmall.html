@@ -1,0 +1,105 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html"/>
+
+<%block name="navigation">
+	<ul class="top-nav">
+		<li><a href="/">优惠推荐</a></li>
+		<li><a href="/seckill">限时秒杀</a></li>
+		<li class="on"><a href="/goldmall">金币商城</a></li>
+		<li class="signin"><a href="#" id="sign_in">签到领金币</a></li>
+	</ul>
+</%block>
+
+<%block name="content">
+	<div id="goldmall_main">
+		<div id="jifen_header_ctn">
+			% if userinfo != None:
+				<div class="head-icon"><img src="" /></div>
+				<div class="jifen-signin">
+					<h2>我的积分：<span class="jifen">1000</span></h2>
+					<h4>已经联系签到<span class="signin-days">6</span>天</h4>
+				</div>
+			% else:
+				<div class="login"><a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100523811&redirect_uri=http://ztmhs.maimiaotech.com/auth/login&scope=all">请先登录</a></div>
+			% endif
+			<div class="jifen-desc">
+				<h2>积分能换什么？</h2>
+				<p>通过金币可兑换的实物如：彩票，充值卡，iPhone5S，集分宝</p>
+			</div>
+		</div>
+		<div id="earn_gold_ctn">
+			<div class="earn-gold">
+				赚金币:
+				<a id="sianin_gold">签到领金币</a>
+				<a id="follow_gold">关注领金币<span>+10</span></a>
+				<a>加群领金币<span>+10</span></a>
+				<a>收藏领金币<span>+10</span></a>
+				<a class="">分享领金币<span>+3</span><span class="big">x5</span></a>
+				<a>设置提醒领金币<span>+3</span></a>
+			</div>
+			<span class="beizu">注：任务每日更新</span>
+		</div>
+		<div id="jifen_exchange_ctn">
+			<div class="exchange-item-list">
+				<div class="exchange-item-ctn">
+					<div class="product-img">
+						<img src="" />
+					</div>
+					<div class="product-detail">
+						<p class="product-ctn">集分宝100个<span class="extra">（相当于1元）</span></p>
+						<p class="cost-ctn">消耗100金币<span class="tip">今日能兑换该商品1次</span></p>
+						<p class="left-ctn">今日还剩：<span class="left-no">15 </span> 件 <button class="exchange-btn">立即兑换</button></p>
+					</div>
+				</div>
+				<div class="exchange-item-ctn">
+					<div class="product-img">
+						<img src="" />
+					</div>
+					<div class="product-detail">
+						<p class="product-ctn">集分宝100个<span class="extra">（相当于1元）</span></p>
+						<p class="cost-ctn">消耗100金币<span class="tip">今日能兑换该商品1次</span></p>
+						<p class="left-ctn">今日还剩：<span class="left-no">15 </span> 件 <button class="exchange-btn">立即兑换</button></p>
+					</div>
+				</div>
+				<div class="exchange-item-ctn">
+					<div class="product-img">
+						<img src="" />
+					</div>
+					<div class="product-detail">
+						<p class="product-ctn">集分宝100个<span class="extra">（相当于1元）</span></p>
+						<p class="cost-ctn">消耗100金币<span class="tip">今日能兑换该商品1次</span></p>
+						<p class="left-ctn">今日还剩：<span class="left-no">15 </span> 件 <button class="exchange-btn">立即兑换</button></p>
+					</div>
+				</div>
+				<div class="exchange-item-ctn">
+					<div class="product-img">
+						<img src="" />
+					</div>
+					<div class="product-detail">
+						<p class="product-ctn">集分宝100个<span class="extra">（相当于1元）</span></p>
+						<p class="cost-ctn">消耗100金币<span class="tip">今日能兑换该商品1次</span></p>
+						<p class="left-ctn">今日还剩：<span class="left-no">15 </span> 件 <button class="exchange-btn">立即兑换</button></p>
+					</div>
+				</div>
+				<div class="exchange-item-ctn">
+					<div class="product-img">
+						<img src="" />
+					</div>
+					<div class="product-detail">
+						<p class="product-ctn">集分宝100个<span class="extra">（相当于1元）</span></p>
+						<p class="cost-ctn">消耗100金币<span class="tip">今日能兑换该商品1次</span></p>
+						<p class="left-ctn">今日还剩：<span class="left-no">15 </span> 件 <button class="exchange-btn">立即兑换</button></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="more-expect">
+			更多内容尽请期待...
+		</div>
+	</div>
+	<script>
+		$(function(){
+			MM.goldmall.init();
+		});
+	</script>
+</%block>

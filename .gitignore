@@ -1,0 +1,8 @@
+zhs/*.pyc
+.DS_Store
+common/*.pyc
+db_models/*.pyc
+qquser_models/*.pyc
+*.pyc
+*.pyc
+.idea/*

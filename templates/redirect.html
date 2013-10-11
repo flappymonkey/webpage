@@ -1,0 +1,66 @@
+## -*- coding: utf-8 -*-
+<html>
+<head>
+  <script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21635981"></script>
+<script type="text/javascript">
+var url = "${url}";
+function autoclick(){
+  if( url.indexOf("taobao.com") != -1 || url.indexOf("tmall.com") != -1 ){
+    var id = getUrlParam(url, "id");
+    if(id != null){
+      TOP.api('rest', 'get',{
+        method:'taobao.taobaoke.widget.items.convert',
+        num_iids:id,
+        fields:'num_iid,click_url,commission_rate'
+      },function(resp){
+        if(resp.error_response){
+          console.log('taobao.taobaoke.widget.items.convert接口获取商品信息品失败!'+resp.error_response.msg);
+          location.href = url;
+        }else{
+          var respItems=resp.taobaoke_items;
+          console.log(respItems);
+        }
+      });
+    }else{
+      location.href = url;
+    }
+  }else{
+    lnk = document.getElementById("auto");
+    lnk.click();
+  }
+}
+
+function getUrlParam(url, name) {
+    var reg = new RegExp("(/?|&)" + name + "=([^&]*)(&|$)");
+    var r = url.match(reg);
+    if (r != null)
+        return unescape(r[2]);
+    return null;
+}
+</script>
+</head>
+
+
+<body onload="autoclick()">
+
+<a id="auto" href="${url}"></a>
+<script type='text/javascript'>
+  var _jjl = new Date().toDateString().replace(/\s/g, '') + new Date().toTimeString().replace(/:\d{2}:\d{2}\sUTC[+]\d{4}$/g, '');
+  document.write(unescape("%3Cscript src='http://p.yiqifa.com/js/juejinlian.js' type='text/javascript'%3E%3C/script%3E"));
+  document.write(unescape("%3Cscript src='http://p.yiqifa.com/jj?_jjl.js' type='text/javascript'%3E%3C/script%3E"));
+  document.write(unescape("%3Cscript src='http://p.yiqifa.com/js/md.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'>
+  try{
+    var siteId = 675453;
+    document.write(unescape("%3Cscript src='http://p.yiqifa.com/jj?sid=" + siteId + "&_jjl.js' type='text/javascript'%3E%3C/script%3E"));
+    var jjl = JueJinLian._init();
+    jjl._addWid(siteId);
+    jjl._addE("");
+    jjl._addScope(0);
+    jjl._run();
+  }catch(e){}
+</script>
+
+</body>
+</html>

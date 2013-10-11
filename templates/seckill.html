@@ -1,0 +1,206 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html"/>
+
+<%def name="makeItem(item)">
+	<% 
+		if item["stat"] == 1:
+			stat = "upcoming"
+		elif item["stat"] == 2:
+			stat = "normal"
+		elif item["stat"] == 3:
+			stat = "sellout"
+
+		cur_price = item["cur_price"]
+		if cur_price != -1:
+			if cur_price >= 100000:
+				cur_price = cur_price/100
+			else:
+				cur_price = "%.2f" %(cur_price/100.00)
+		ori_price = item["ori_price"]
+		if ori_price != -1:
+			if ori_price >= 100000:
+				ori_price = ori_price/100
+			else:
+				ori_price = "%.2f" %(ori_price/100.00)
+		discount = item["discount"]
+		if discount != -1:
+			discount = "%.1f" %(discount/10.0)
+
+		title = item["title"]
+	%>
+    <div id="${item["id"]}" class="item ${stat}">
+		<div class="img-ctn">
+		<a href="/redirect/?${item["link_id"]}" target="_blank"><img class="img" src="${item["img"]}" onload="if(this.width > this.height){this.width=276}else if(this.width < this.height){this.width=this.width*276/this.height;this.height=276;}else{this.width=this.height=276}this.style.marginTop = (276-this.height)/2 + 'px';" /></a>
+		</div>
+		<p class="desc"><a href="/redirect/?${item["link_id"]}" target="_blank">${title}</a></p>
+		<div class="extra-info">
+			<p class="price-ctn">
+				% if item["cur_price"] != -1:
+					<span class="curr-price">￥${cur_price}</span>
+				% endif
+				% if item["ori_price"] != -1:
+					<span class="old-price">￥${ori_price}</span>
+				% endif
+				% if item["discount"] != -1:
+					<span class="discont">(${discount}折)</span>
+				% endif
+				% if item["source"] == "Z秒杀":
+					<a target="_blank" href="http://www.amazon.cn/%E4%BF%83%E9%94%80-%E7%89%B9%E4%BB%B7/b/ref=cs_top_nav_gb27?ie=UTF8&node=42450071&camp=536&creative=3132&linkCode=ur2&tag=zhenhuasuan-23"><span class="source">${item["source"]}</span></a>
+				% else:
+					<span class="source">${item["source"]}</span>
+				% endif
+			</p>
+			<p class="time-ctn">
+				% if item["stat"] == 1:
+					<span class="time-type">开始时间:</span>
+					<span class="timer" start_time_stamp="${item["display_time_begin"]}" end_time_stamp="${item["display_time_end"]}"></span>
+				% elif item["stat"] == 2:
+					<span class="time-type">结束时间:</span>
+					<span class="timer" start_time_stamp="${item["display_time_begin"]}" end_time_stamp="${item["display_time_end"]}"></span>
+				% else:
+					<span class="time-type">已经结束</span>
+				% endif
+				% if item["sale_percent"] == -1:
+					<span class="unlimited">不限量</span>
+				% else:
+					<div class="selled-percent">
+						<span>已售</span>
+						<span class="percent-bar-back">
+							<span class="percent-bar" style="width: ${item["sale_percent"]}%"></span>
+						</span>
+						<span>${item["sale_percent"]}%</span>
+					</div>
+				% endif
+				<span class="upcoming-text">即将开始</span>
+			</p>
+		</div>
+		<div class="upcoming-icon">
+		</div>
+		<div class="sellout-icon"></div>
+		<div class="item-mask item-mask-back">
+		</div>
+		<div class="item-mask item-mask-content">
+			% if item["stat"] == 1:
+				<h3>产品将于<span class="starttime"></span>开售</h3>
+				<div class="qqwarn"><a target="_blank" href="#">点击设置QQ提醒</a></div>
+				<h4>商品在开始前<span class="warn">5</span>分钟可点</h4>
+			% elif item["stat"] == 3:
+				<h3>该产品已结束售完</h3>
+				<div class="qqwarn"><a target="_blank" href="#">点击设置明天提醒我</a></div>
+			% endif
+		</div>
+		% if item["source"] == "Z秒杀":
+			<div class="zsec-tips">Z秒杀部分商品点击过去后无法享受秒杀价格，请点击本产品下方"Z秒杀"按钮，通过选择分类，查找商品。
+			</div>
+		% endif
+	</div>
+</%def>
+
+<%block name="navigation">
+	<ul class="top-nav">
+		<li><a href="/">优惠推荐</a></li>
+		<li class="on"><a href="/seckill">限时秒杀</a></li>
+		<li><a href="/goldmall">金币商城</a></li>
+		<li class="signin"><a href="#" id="sign_in">签到领金币</a></li>
+	</ul>
+</%block>
+
+<%block name="content">
+	<div class="sec-kill-main">
+		<div class="sort-ctn">
+			<ul>
+				% if req_type == 1:
+					<li><a class="on" id="upcoming_btn" href="#">即将开始</a></li>
+				% else:
+					<li><a id="upcoming_btn" href="#">即将开始</a></li>
+				% endif
+				<li><a id="sellout_btn" href="#">即将结束</a></li>
+
+				% if req_type == 3:
+					<li><a id="normal_btn" href="#" class="on">按价格排序<i class="icon asc"></i></a></li>	
+				% else:
+					<li><a id="normal_btn" href="#">按价格排序<i class="icon normal"></i></a></li>
+				% endif
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div>
+			<div class="sec-kill-items">
+				% for item in sec_kills:
+					${makeItem(item)}
+				% endfor
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+	<div id="pagination" class="wrapper"></div>
+	<input id="req_type" type="hidden" value="${req_type}" />
+	<script>
+		$(function(){
+			MM.seckill.init();
+		});
+	</script>
+	<script id="seckillItemTmpl" type="text/x-jquery-tmpl">
+		<div id="${'$'}{id}" class="item {{if stat == 1}}upcoming{{else stat == 2}}normal{{else stat == 3}}sellout{{/if}}">
+			<div class="img-ctn">
+			<a href="/redirect/?${'$'}{link_id}" target="_blank"><img class="img" src="${'$'}{img}" onload="if(this.width > this.height){this.width=276}else if(this.width < this.height){this.width=this.width*276/this.height;this.height=276;}else{this.width=this.height=276}this.style.marginTop = (276-this.height)/2 + 'px';" /></a>
+			</div>
+			<p class="desc"><a href="/redirect/?${'$'}{link_id}" target="_blank">${'$'}{title}</a></p>
+			<div class="extra-info">
+				<p class="price-ctn">
+					{{if cur_price != -1}}<span class="curr-price">￥${'$'}{cur_price}</span>{{/if}}
+					{{if ori_price != -1}}<span class="old-price">￥${'$'}{ori_price}</span>{{/if}}
+					{{if discount != -1}}<span class="discont">(${'$'}{discount}折)</span>{{/if}}
+					{{if source == "Z秒杀"}}
+						<a target="_blank" href="http://www.amazon.cn/%E4%BF%83%E9%94%80-%E7%89%B9%E4%BB%B7/b/ref=cs_top_nav_gb27?ie=UTF8&node=42450071&camp=536&creative=3132&linkCode=ur2&tag=zhenhuasuan-23"><span class="source">${'$'}{source}</span></a>
+					{{else}}
+						<span class="source">${'$'}{source}</span>
+					{{/if}}
+				</p>
+				<p class="time-ctn">
+					{{if stat == 1}}
+						<span class="time-type">开始时间:</span>
+						<span class="timer" start_time_stamp="${'$'}{display_time_begin}" end_time_stamp="${'$'}{display_time_end}"></span>
+					{{else stat == 2}}
+						<span class="time-type">结束时间:</span>
+						<span class="timer" start_time_stamp="${'$'}{display_time_begin}" end_time_stamp="${'$'}{display_time_end}"></span>
+					{{else}}
+						<span class="time-type">已经结束</span>
+					{{/if}}
+					{{if sale_percent == -1}}
+						<span class="unlimited">不限量</span>
+					{{else}}
+						<div class="selled-percent">
+							<span>已售</span>
+							<span class="percent-bar-back">
+								<span class="percent-bar" style="width: ${'$'}{sale_percent}%"></span>
+							</span>
+							<span>${'$'}{sale_percent}%</span>
+						</div>
+					{{/if}}
+					<span class="upcoming-text">即将开始</span>
+				</p>
+			</div>
+			<div class="upcoming-icon">
+			</div>
+			<div class="sellout-icon"></div>
+			<div class="item-mask item-mask-back">
+			</div>
+			<div class="item-mask item-mask-content">
+				{{if stat == 1}}
+					<h3>产品将于<span class="starttime"></span>开售</h3>
+					<div class="qqwarn"><a target="_blank" href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=”${'$'}{title}“还有5分钟就要开始秒杀啦！GO！&time=${'$'}{warn_time}&advance=5&url=http://ztmhs.maimiaotech.com/seckill?req_type=1">点击设置QQ提醒</a></div>
+					<h4>商品在开始前<span class="warn">5</span>分钟可点</h4>
+				{{else stat == 3}}
+					<h3>该产品已结束售完</h3>
+					<div class="qqwarn"><a target="_blank" href="http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=今天的秒杀已经开始了，要知道好价格的商品可是稍纵即逝哦！&time=${'$'}{tomorrow_warn_time}&advance=0&url=http://ztmhs.maimiaotech.com/seckill">点击设置明天提醒我</a></div>
+				{{/if}}
+			</div>
+			{{if source == "Z秒杀"}}
+				<div class="zsec-tips">Z秒杀部分商品点击过去后无法享受秒杀价格，请点击本产品下方"Z秒杀"按钮，通过选择分类，查找商品。
+				</div>
+			{{/if}}
+		</div>
+	</script>
+</%block>
