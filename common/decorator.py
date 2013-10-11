@@ -14,8 +14,8 @@ from validictory import  ValidationError
 from validictory import  validate
 from pymongo.errors import AutoReconnect, OperationFailure, PyMongoError
 
-from ztmhs.common.exceptions import  InvalidInputException
-from ztmhs.common.exceptions import  MongodbException
+from webpage.common.exceptions import  InvalidInputException
+from webpage.common.exceptions import  MongodbException
 
 logger = logging.getLogger(__name__)
 

@@ -1,6 +1,6 @@
-__author__ = 'gaonan'
+__author__ = 'shen bin'
 
-from ztmhs.zhs import settings
+from webpage.taohulu import settings
 
 class UserInfo(object):
     _conn = settings.mongoConn

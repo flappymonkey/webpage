@@ -11,19 +11,19 @@ import hashlib
 import hmac
 import time
 
-from ztmhs.zhs.dev import *
+from webpage.taohulu.dev import *
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from djangomako.shortcuts import render_to_response
-from ztmhs.db_models.feeds import Feeds
-from ztmhs.db_models.seckill import SecKill
+from webpage.db_models.feeds import Feeds
+from webpage.db_models.seckill import SecKill
 from django.views.decorators.csrf import  ensure_csrf_cookie
-from ztmhs.common.openqqpy import OpenQQClient
-from ztmhs.db_models.userinfo import UserInfo
-from ztmhs.qquser_models.get_info import QQUsereInfo
-from ztmhs.zhs.settings import APP_ID,APP_KEY,REDIRECT_URI,SCOPE
-from ztmhs.zhs.settings import TAOBAO_APP_KEY,TAOBAO_APP_SECRET
+from webpage.common.openqqpy import OpenQQClient
+from webpage.db_models.userinfo import UserInfo
+from webpage.qquser_models.get_info import QQUsereInfo
+from webpage.taohulu.settings import APP_ID,APP_KEY,REDIRECT_URI,SCOPE
+from webpage.taohulu.settings import TAOBAO_APP_KEY,TAOBAO_APP_SECRET
 
 info_log = logging.getLogger('infolog')
 stat_log = logging.getLogger('statlog')

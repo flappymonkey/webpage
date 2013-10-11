@@ -1,11 +1,11 @@
-__author__ = 'gaonan'
+__author__ = 'shen bin'
 #encoding=utf8
 import datetime
 import time
-from ztmhs.zhs import settings
-from ztmhs.zhs.settings import SECKILL_PAGE_RET_NUM
-from ztmhs.zhs.settings import NO_PRICE_WAIT_TIME
-from ztmhs.zhs.dev import *
+from webpage.taohulu import settings
+from webpage.taohulu.settings import SECKILL_PAGE_RET_NUM
+from webpage.taohulu.settings import NO_PRICE_WAIT_TIME
+from webpage.taohulu.dev import *
 
 import logging
 info_log = logging.getLogger('infolog')

@@ -1,6 +1,6 @@
 __author__ = 'gaonan'
 #encoding=utf8
-from ztmhs.zhs.settings import COOKIE_AGE,APP_ID,APP_KEY,REDIRECT_URI,SCOPE
+from webpage.taohulu.settings import COOKIE_AGE,APP_ID,APP_KEY,REDIRECT_URI,SCOPE
 import datetime
 import random
 import hashlib

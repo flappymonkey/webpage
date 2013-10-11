@@ -3,12 +3,12 @@
 import simplejson as json
 from django.http import HttpResponse
 from pymongo import json_util
-from ztmhs.db_models.feeds import Feeds
-from ztmhs.db_models.seckill import SecKill
-from ztmhs.common.decorator import ajax_json_validate
+from webpage.db_models.feeds import Feeds
+from webpage.db_models.seckill import SecKill
+from webpage.common.decorator import ajax_json_validate
 from json_schema import *
 import logging
-from ztmhs.zhs.dev import *
+from webpage.taohulu.dev import *
 info_log = logging.getLogger('infolog')
 stat_log = logging.getLogger('statlog')
 

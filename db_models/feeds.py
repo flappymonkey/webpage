@@ -1,9 +1,9 @@
 #encoding=utf8
 __author__ = 'shenbin shenbin@maimiaotech.com'
 
-from ztmhs.zhs import settings
-from ztmhs.zhs.settings import TOP_RET_NUM
-from ztmhs.zhs.settings import PAGE_RET_NUM
+from webpage.taohulu import settings
+from webpage.taohulu.settings import TOP_RET_NUM
+from webpage.taohulu.settings import PAGE_RET_NUM
 
 class Feeds(object):
     """
@@ -12,7 +12,7 @@ class Feeds(object):
     _conn = settings.mongoConn
     _db = "scrapy"
     if _conn != None:
-        feeds = _conn[_db]['ztmhs']
+        feeds = _conn[_db]['webpage']
         links = _conn[_db]['linkdb']
     else:
         feeds = None

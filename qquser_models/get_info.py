@@ -1,6 +1,6 @@
 #encoding=utf8
 import json
-from ztmhs.zhs import settings
+from webpage.taohulu import settings
 
 class QQUsereInfo(object):
     @classmethod

@@ -1,5 +1,5 @@
 #encoding=utf8
-# Django settings for zhs project.
+# Django settings for taohulu project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -37,7 +37,7 @@ DATABASES = {
 }
 
 MGDBS = {
-    'HOST':'192.168.38.226',
+    'HOST':'localhost',
     'PORT':27017,
     'USER':'',
     'PASSWORD':''
@@ -142,10 +142,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
 
-ROOT_URLCONF = 'zhs.urls'
+ROOT_URLCONF = 'taohulu.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'zhs.wsgi.application'
+WSGI_APPLICATION = 'taohulu.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT,'templates'),
@@ -189,17 +189,17 @@ LOGGING = {
         'file':{
             'formatter': 'default',
             'class':'logging.FileHandler',
-            'filename':  '/tmp/zhs.log',
+            'filename':  '/tmp/taohulu.log',
             },
         'dbfile':{
             'formatter': 'default',
             'class':'logging.FileHandler',
-            'filename': '/tmp/zhs_db.log'
+            'filename': '/tmp/taohulu_db.log'
         },
         'statfile':{
             'formatter': 'default',
             'class':'logging.FileHandler',
-            'filename': '/tmp/zhs_stat.log',
+            'filename': '/tmp/taohulu_stat.log',
             }
     },
     'loggers': {
